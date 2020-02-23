@@ -1,0 +1,12 @@
+server1:
+  port: 8887
+  modelId: 500
+server2:
+  port: 8886
+  modelId: 500
+server3:
+  port: 8885
+  modelId: 500
+server4:
+  port: 8884
+  modelId: 500

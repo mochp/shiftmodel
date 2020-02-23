@@ -1,0 +1,22 @@
+{
+    "8884": {
+        "modelPath": "/home/nlp/lmy/shiftmodel/models/600.h5",
+        "pid": 7964,
+        "status": 1
+    },
+    "8885": {
+        "modelPath": "/home/nlp/lmy/shiftmodel/models/600.h5",
+        "pid": 10354,
+        "status": 1
+    },
+    "8886": {
+        "modelPath": "/home/nlp/lmy/shiftmodel/models/600.h5",
+        "pid": 9385,
+        "status": 1
+    },
+    "8887": {
+        "modelPath": "/home/nlp/lmy/shiftmodel/models/600.h5",
+        "pid": 8632,
+        "status": 1
+    }
+}
