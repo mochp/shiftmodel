@@ -24,9 +24,10 @@ class FileUploadHandler(tornado.web.RequestHandler):
 if __name__ == '__main__':
     pid = os.getpid()
     port, model_path, labels = sys.argv[1], sys.argv[2], sys.argv[3]
+    #预先锁定
     
     model = YOLO(model_path=model_path, labels=labels)
-    utils.set_port(port=port, pids=pid, modelPath=model_path, status=1)
+    utils.set_port(port=port, pids=pid, modelPath=model_path, status=-1)
     app = tornado.web.Application([(r'/yolo', FileUploadHandler), ])
     app.listen(port)
     tornado.ioloop.IOLoop.instance().start()
