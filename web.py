@@ -15,23 +15,14 @@ class FileUploadHandler(tornado.web.RequestHandler):
         self.set_header('Access-Control-Allow-Origin', '*')
         self.set_header('Access-Control-Allow-Methods', 'POST, GET, OPTIONS')
         modelId = self.get_query_argument('modelId', 'None') 
-        port = self.get_query_argument('port', 'None') 
+        # picture_path = self.get_query_argument('path', 'jpg') 
+        picture_path = "2.png"
 
         assert int(modelId)>0
-        assert int(port)>0
 
-        check = utils.check_port_is_modelId(port,modelId)
-        utils.waiting_port_success_or_ready(port)
-        if check:
-            res = "ok"
-            utils.setting_port_success(port)
-        else:
-            print("shifting...")
-            utils.shift_port_to_modelId(port,modelId)   
-            utils.waiting_port_ready(port)
-            utils.setting_port_success(port)
-            res = "ok"
-            
+        port = choices(config.PORTS)[0]
+        utils.query_master(modelId,port)
+        res = utils.predict(port,picture_path)
         respon = {"res":res}
 
         self.set_header('Content-Type', 'application/json; charset=UTF-8')
@@ -43,5 +34,8 @@ app = tornado.web.Application([
 ])
 
 if __name__ == '__main__':
-    app.listen(8888)   
+    # app.listen(8889)   
+    server = tornado.httpserver.HTTPServer(app)
+    server.bind(8889)
+    server.start(0)  # 禁用多线程
     tornado.ioloop.IOLoop.instance().start()

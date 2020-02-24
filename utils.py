@@ -140,10 +140,16 @@ def predict(port,path):
     url = "http://localhost:"+str(port) +"/yolo?path="+path
     res = requests.get(url)
     return res.text
+    
+def query_master(modelId,port):
+    payload = {'modelId': modelId, 'port': port}
+    ret = requests.get("http://localhost:8888/master", params=payload)
+    print(ret.text)
 
 if __name__ == '__main__':
     print("testing...")
     # stop_all()
     create_json(config.PORTS)
     start_app()
+    # query_master(400,6610)
     
